@@ -1,0 +1,24 @@
+.traffic-container{
+  position: relative;
+}
+
+.traffic-btn{
+  position: absolute;  
+  display: inline-block;  
+  border: none;  
+  cursor: pointer;
+}
+
+.start-btn{
+  bottom: 0px;
+  left: 0;
+}
+
+.remove-btn{
+  bottom: -25px; 
+}
+
+.stop-btn{
+  bottom: 0;  
+  right: 0;
+}
