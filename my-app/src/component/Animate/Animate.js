@@ -12,10 +12,10 @@ export default class Animate extends React.Component{
       animate: null
     }
   }
+  
 
   getMainOtions = (item, index)  => {
-    return <>
-        
+    return <>       
       <optgroup
         label = { item.optgroup }
         key = { Math.random() }
@@ -24,33 +24,30 @@ export default class Animate extends React.Component{
       <option
         value = { item.option }
         key = { Math.random() }
-        onClick = { event => this.changeState(
-          {id: index }          
-          ) 
-        }
+        getIndex = { () => index }        
       >
         { item.option }
       </option>
     </>
   }
 
-  changeState = prop => {
+  changeState = prop => {   
+    
     let clone = { 
       ...this.state,
       ...prop
     }
-    console.log(clone)
-      this.setState({ ...clone })
+    
+    this.setState({ ...clone })
   }
 
-  createOptions = option => {
-    console.log(option);
+  createOptions = option => {    
     let options;
     for( let key in option){
       options = 
         <option
           key={key}
-          value = {key}
+          value = {key}          
         >
           {key}
         </option>
@@ -89,10 +86,21 @@ export default class Animate extends React.Component{
             <div
               className = "mt-3 selectContainer"
             >
+              {/* event => this.changeState( 
+                  { mainValue: event.target.value,
+                    id: index
+                  } 
+                 ) */}
               <select 
                 className = "mainSelect selects"
                 value = {this.state.mainValue}
-                onChange = { event => this.changeState( { mainValue: event.target.value } ) }
+                onChange = { event => {              
+                     
+                  return this.changeState( 
+                    { mainValue: event.target.value,
+                      id: event.target.options.selectedIndex} 
+                  )}}
+                
               >
                 { animateData.map( ( item, index ) => this.getMainOtions( item, index )) }
               </select>
